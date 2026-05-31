@@ -162,6 +162,7 @@ export function OutlineChatPanel({ onClose }: { onClose: () => void }) {
   const activeConversationId = useOutlineChatStore((s) => s.activeConversationId)
   const streamingContent = useOutlineChatStore((s) => s.streamingContent)
   const isStreaming = useOutlineChatStore((s) => s.isStreaming)
+  const loaded = useOutlineChatStore((s) => s.loaded)
   const createConversation = useOutlineChatStore((s) => s.createConversation)
   const setActiveConversation = useOutlineChatStore((s) => s.setActiveConversation)
   const addMessage = useOutlineChatStore((s) => s.addMessage)
@@ -170,6 +171,14 @@ export function OutlineChatPanel({ onClose }: { onClose: () => void }) {
   const deleteConversation = useOutlineChatStore((s) => s.deleteConversation)
   const setStreamingContent = useOutlineChatStore((s) => s.setStreamingContent)
   const setIsStreaming = useOutlineChatStore((s) => s.setIsStreaming)
+  const loadFromDisk = useOutlineChatStore((s) => s.loadFromDisk)
+
+  // 加载持久化的历史记录
+  useEffect(() => {
+    if (!loaded) {
+      void loadFromDisk()
+    }
+  }, [loaded, loadFromDisk])
 
   const activeConv = conversations.find((c) => c.id === activeConversationId)
   const activeMessages = activeConv?.messages ?? []
