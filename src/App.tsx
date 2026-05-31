@@ -11,6 +11,7 @@ import { loadReviewItems, loadChatHistory } from "@/lib/persist"
 import { setupAutoSave } from "@/lib/auto-save"
 import { startClipWatcher } from "@/lib/clip-watcher"
 import { checkForAppUpdate } from "@/lib/app-updater"
+import { initAnalytics } from "@/lib/analytics"
 import { restoreQueue as restoreIngestQueue } from "@/lib/ingest-queue"
 import { AppLayout } from "@/components/layout/app-layout"
 import { WelcomeScreen } from "@/components/project/welcome-screen"
@@ -115,6 +116,7 @@ function App() {
       } finally {
         setLoading(false)
         void checkForAppUpdate()
+        void initAnalytics()
       }
     }
     init()
