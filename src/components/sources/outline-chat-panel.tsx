@@ -175,7 +175,15 @@ export function OutlineChatPanel({ onClose }: { onClose: () => void }) {
 
   const handleStop = useCallback(() => {
     abortRef.current?.abort()
-  }, [])
+    // Force stop streaming state immediately in case abort doesn't trigger catch
+    const partial = useOutlineChatStore.getState().streamingContent
+    if (partial && activeConversationId) {
+      replaceLastAssistant(activeConversationId, partial)
+    }
+    setStreamingContent("")
+    setIsStreaming(false)
+    abortRef.current = null
+  }, [activeConversationId, replaceLastAssistant, setStreamingContent, setIsStreaming])
 
   const handleRegenerate = useCallback(async (msgIndex: number) => {
     if (!project || isStreaming || !activeConversationId) return
@@ -262,7 +270,7 @@ export function OutlineChatPanel({ onClose }: { onClose: () => void }) {
   }, [project])
 
   return (
-    <div className="flex h-[380px] flex-col border-t border-border bg-background">
+    <div className="flex h-full flex-col border-border bg-background">
       {/* Header with conversation tabs */}
       <div className="flex items-center gap-1 border-b px-2 py-1.5 overflow-x-auto">
         <button
