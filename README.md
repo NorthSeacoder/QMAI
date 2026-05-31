@@ -402,6 +402,14 @@ npm run build:portable
 
 ---
 
+## 致谢
+
+本项目灵感来源：（webnovel-writer）https://github.com/lingfengQAQ/webnovel-writer
+项目框架UI设计依托LLM WIKI：https://github.com/nashsu/llm_wiki
+内置角色灵魂设计参考女娲.skill：https://github.com/alchaincyf/nuwa-skill
+
+
+
 ## 相关链接
 
 - 📦 [Releases 下载](https://github.com/Mochocyang/QMAI/releases)
