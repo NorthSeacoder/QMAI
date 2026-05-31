@@ -665,11 +665,6 @@ async function readSkillFileWithFallback(filePath: string, projectPath?: string)
   } catch (error) {
     const roots: string[] = []
     
-    // 开发模式：尝试当前工作目录
-    if (typeof process !== "undefined" && process.cwd) {
-      roots.push(process.cwd())
-    }
-    
     // 项目目录
     if (projectPath) {
       roots.push(normalizePath(projectPath))
@@ -678,28 +673,27 @@ async function readSkillFileWithFallback(filePath: string, projectPath?: string)
     // Tauri 环境：尝试获取可执行文件目录和资源目录
     if (isTauri()) {
       try {
-        // 我们新添加的命令
         const { getExecutableDir, getResourceDir } = await import("@/commands/fs")
         try {
           const exeDir = await getExecutableDir()
           roots.push(exeDir)
+          // 也尝试 exe 上级目录（便携版场景）
+          const parentDir = exeDir.replace(/[/\\][^/\\]+[/\\]?$/, "")
+          if (parentDir !== exeDir) roots.push(parentDir)
         } catch {}
         try {
           const resDir = await getResourceDir()
           roots.push(resDir)
+          // Tauri NSIS 安装有时会加 _up_ 前缀
+          roots.push(resDir.replace(/[/\\]$/, "") + "/_up_")
         } catch {}
       } catch {}
-      
-      // 也尝试一下 Tauri 内置的 path API 作为备选
+
       try {
-        const { appDataDir, resourceDir } = await import("@tauri-apps/api/path")
+        const { resourceDir } = await import("@tauri-apps/api/path")
         try {
           const resDir = await resourceDir()
           roots.push(resDir)
-        } catch {}
-        try {
-          const appDir = await appDataDir()
-          roots.push(appDir)
         } catch {}
       } catch {}
     }
