@@ -17,6 +17,7 @@
 </p>
 
 ---
+<img width="1232" height="836" alt="image" src="https://github.com/user-attachments/assets/66630916-85b8-4865-9477-f5e04706bee3" />
 
 ## 软件概述
 
@@ -34,6 +35,8 @@
 - AI 辅助写作者：让大模型在长篇创作中持续可用
 
 ---
+<img width="1239" height="883" alt="image" src="https://github.com/user-attachments/assets/076740be-85ef-4503-842d-565c367aebdc" />
+<img width="1201" height="832" alt="image" src="https://github.com/user-attachments/assets/57936132-45b2-4fed-8c80-2c9282fedbf5" />
 
 ## 核心功能
 
@@ -74,6 +77,7 @@
 所有记忆数据以项目目录形式本地存储，章节正文保存为 Markdown，快照与状态保存为 JSON。支持导出、备份和索引重建。
 
 ---
+<img width="1235" height="843" alt="image" src="https://github.com/user-attachments/assets/d143793d-70d1-4dc2-915b-d413860727c0" />
 
 ### 🎭 角色灵魂系统
 
@@ -90,6 +94,7 @@
 - 禁区列表（禁止空泛抒情、禁止所有人物同一说话方式等）
 
 灵魂文档在每次章节生成时自动注入 LLM 提示词，确保全书风格统一。
+<img width="1214" height="850" alt="image" src="https://github.com/user-attachments/assets/921ca1f8-6901-416b-9456-1c2c6b3144b0" />
 
 **角色视角（NvwaSKILL）：**
 
@@ -155,6 +160,7 @@
 自动统计长期未回收的伏笔，计算债务评分，提醒作者哪些伏笔需要推进或收束。
 
 ---
+<img width="1072" height="780" alt="image" src="https://github.com/user-attachments/assets/a685a212-7a56-4354-b018-f243b9357141" />
 
 ### ✍️ 小说写作问题解决方案
 
